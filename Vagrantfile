@@ -135,9 +135,9 @@ Vagrant.configure("2") do |config|
             "en0: Wi-Fi (AirPort)",
             "en0: Wi-Fi (Wireless)",
         ]
-        traefike.vm.network :private_network, ip: PRIVATE_IP_NW + "#{FRONTEND_LB_IP_START}"
+        traefik.vm.network :private_network, ip: PRIVATE_IP_NW + "#{FRONTEND_LB_IP_START}"
         traefik.vm.network "forwarded_port", guest: 6443, host: 6443
-        traefike.vm.provision "ansible" do |ansible|
+        traefik.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/playbooks/frontend_lb.yml"
             ansible.extra_vars = {
                 node_ip: PUBLIC_IP_NW + "#{FRONTEND_LB_IP_START}",

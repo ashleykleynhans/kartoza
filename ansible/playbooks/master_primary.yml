@@ -32,17 +32,17 @@
     ansible.builtin.shell: kubeadm init phase upload-certs --upload-certs | tail -n 1
     register: cert_key
 
-  - name: Save master join command to file
+  - name: Save join command to file
     ansible.builtin.template:
-      src: ../templates/master_join_command.j2
-      dest: /tmp/master-join-command
+      src: ../templates/join_command.j2
+      dest: /tmp/join-command
     delegate_to: localhost
     become: no
 
-  - name: Save worker join command to file
+  - name: Save certificate key to file
     ansible.builtin.template:
-      src: ../templates/worker_join_command.j2
-      dest: /tmp/worker-join-command
+      src: ../templates/cert_key.j2
+      dest: /tmp/cert-key
     delegate_to: localhost
     become: no
 

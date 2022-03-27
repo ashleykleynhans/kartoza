@@ -100,7 +100,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "db" do |db|
         db.vm.provider "virtualbox" do |vb|
             vb.name = "db"
-            vb.memory = 1024
+            vb.memory = 512
             vb.cpus = 1
             vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
             vb.customize ["modifyvm", :id, "--nested-hw-virt","on"]

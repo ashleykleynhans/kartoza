@@ -27,11 +27,11 @@
         state: latest
         update_cache: yes
 
-    - name: Change the bind IP from 127.0.0.1 to 10.10.10.30
+    - name: Change the bind IP from 127.0.0.1 to 0.0.0.0
       ansible.builtin.replace:
         path: /etc/mongod.conf
         regexp: "bindIp: 127.0.0.1"
-        replace: "bindIp: 10.10.10.30"
+        replace: "bindIp: 0.0.0.0"
 
     - name: Enable and Start MongoDB
       ansible.builtin.systemd:

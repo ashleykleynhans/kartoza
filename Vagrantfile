@@ -6,7 +6,7 @@ K8S_WORKER_NODES = 2
 K8S_MASTER_IP_START = 10
 K8S_WORKER_IP_START = 20
 K8S_LB_IP_START = 30
-DB_IP_START = 30
+DB_IP_START = 50
 
 PRIVATE_IP_NW = "10.10.10."
 
@@ -100,7 +100,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "db" do |db|
         db.vm.provider "virtualbox" do |vb|
             vb.name = "db"
-            vb.memory = 512
+            vb.memory = 1024
             vb.cpus = 1
             vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
             vb.customize ["modifyvm", :id, "--nested-hw-virt","on"]

@@ -21,11 +21,11 @@ At least the following hardware resources will be required on the host machine t
 | k8s-lb       |  1  | 512MB  |
 | k8s-master-1 |  2  | 2GB    |
 | k8s-master-2 |  2  | 2GB    |
-| k8s-master-3 |  2  | 2GB    |
 | k8s-worker-1 |  1  | 512MB  |
 | k8s-worker-2 |  1  | 512MB  |
+| db           |  1  | 512MB  |
 |              |     |        |
-| TOTAL        |  5  | 7.5GB  |
+| TOTAL        |  5  | 6GB    |
 
 ## Clone the GitHub Repository
 
@@ -72,9 +72,9 @@ This will provision the following Virtual Box VMs using Vagrant and Ansible:
 | k8s-lb         | HAProxy Load Balancer to ensure High Availability |
 | k8s-master-1   | Kubernetes Primary Master Node                    |
 | k8s-master-2   | Kubernetes Secondary Master Node                  |
-| k8s-master-3   | Kubernetes Secondary Master Node                  |
 | k8s-worker-1   | Kubernetes Worker where Docker Containers wll run |
 | k8s-worker-2   | Kubernetes Worker where Docker Containers wll run |
+| db             | MongoDB Database Server to persist data           |
 
 
 ```bash

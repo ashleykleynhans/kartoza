@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Include task to install packages that enable apt over HTTPS
+      ansible.builtin.include_tasks: includes/apt_over_https.yml
+
+    - name: Include task to install useful packages
+      ansible.builtin.include_tasks: includes/install_useful_packages.yml
+
+    - name: Import MongoDB PGP Key
+      ansible.builtin.apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.4.asc
+        state: present
+
+    - name: Add MongoDB sources list
+      ansible.builtin.lineinfile:
+        line: "deb http://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse"
+        dest: /etc/apt/sources.list.d/mongodb.list
+        state: present
+        create: yes
+
+    - name: Install MongoDB
+      ansible.builtin.apt:
+        name: mongodb-org
+        state: latest
+        update_cache: yes
+
+    - name: Change the bind IP from 127.0.0.1 to 10.10.10.30
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: "bindIp: 127.0.0.1"
+        replace: "bindIp: 10.10.10.30"
+
+    - name: Enable and Start MongoDB
+      ansible.builtin.systemd:
+        name: mongod
+        state: started
+        enabled: yes

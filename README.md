@@ -1,4 +1,4 @@
-# vagrant-ansible-k8s
+# Kartoza Technical Assessment
 
 Provision a High Availability Multi Master Kubernetes Cluster using Vagrant, Virtualbox and Ansible with the following configuration:
 
@@ -10,7 +10,7 @@ With a default Kubernetes configuration, no external IP addresses are assigned w
 
 Fortunately [MetalLB](https://metallb.universe.tf/) solves this problem, and has been implented to allow external IP addresses to be assigned to Load Balancers in the Kubernetes Cluster.
 
-The configuration can be viewed on [Github](https://github.com/ashleykleynhans/vagrant-ansible-k8s/blob/master/k8s/metallb-config.yml).
+The configuration can be viewed on [Github](https://github.com/ashleykleynhans/kartoza/blob/master/k8s/metallb-config.yml).
 
 ## Requirements
 
@@ -32,7 +32,7 @@ At least the following hardware resources will be required on the host machine t
 Run the following command from the terminal to clone the GitHub Repository:
 
 ```bash
-git clone https://github.com/ashleykleynhans/vagrant-ansible-k8s.git
+git clone https://github.com/ashleykleynhans/kartoza.git
 ```
 
 ## Install Required Software
@@ -60,7 +60,7 @@ Run the setup script from the terminal to install the required software:
 Begin by ensuring that you are in the directory which the Github Repository was cloned to:
 
 ```
-cd vagrant-ansible-k8s
+cd kartoza
 ```
 
 ### Starting the Stack

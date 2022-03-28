@@ -8,6 +8,8 @@ Provision a High Availability Multi Master Kubernetes Cluster using Vagrant, Vir
 * 1 MongoDB database server to persist data
 * 1 nginx reverse proxy to provide SSL termination
 
+![Architecture Diagram](k8s.png)
+
 With a default Kubernetes configuration, no external IP addresses are assigned when a LoadBalancer service is created.
 
 Fortunately [MetalLB](https://metallb.universe.tf/) solves this problem, and has been implented to allow external IP addresses to be assigned to Load Balancers in the Kubernetes Cluster.

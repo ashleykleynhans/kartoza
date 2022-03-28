@@ -101,4 +101,10 @@ vagrant destroy -f
 
 ## Accessing the Stack
 
+### Website
+
 [https://guestbook.shongololo.xyz/](https://guestbook.shongololo.xyz/)
+
+### Health Check
+
+[https://guestbook.shongololo.xyz/health/](https://guestbook.shongololo.xyz/health/)

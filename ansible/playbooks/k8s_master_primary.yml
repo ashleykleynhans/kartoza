@@ -70,6 +70,9 @@
         # Configure MetalLB IP Pool range
         - https://raw.githubusercontent.com/ashleykleynhans/vagrant-ansible-k8s/master/k8s/metallb-config.yml
 
+    - name: Include task to deploy guestbook application
+      ansible.builtin.include_tasks: includes/deploy_application.yml
+
   # Setup a handler for checking Docker daemon
   handlers:
     - name: docker status

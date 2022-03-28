@@ -4,6 +4,6 @@
   ansible.builtin.command: "kubectl apply -f {{ item }}"
   loop:
     # Deploy guestbook application
-    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/deployment.yaml
+    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/deployment.yml
     # Create Load Balancer with external IP 10.10.10.180
-    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/loadbalancer.yaml
+    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/loadbalancer.yml

@@ -108,3 +108,7 @@ vagrant destroy -f
 ### Health Check
 
 [https://guestbook.shongololo.xyz/health/](https://guestbook.shongololo.xyz/health/)
+
+## Notes
+
+SSL keys should never be committed to a git repository, and rather stored in a secrets management tool such as Hashicorp vault, but since this is just an assessment and not an actual website/application, the key has been committed for simplicity.

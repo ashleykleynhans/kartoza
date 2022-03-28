@@ -1,0 +1,69 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Include task to install packages that enable apt over HTTPS
+      ansible.builtin.include_tasks: includes/apt_over_https.yml
+
+    - name: Include task to install useful packages
+      ansible.builtin.include_tasks: includes/install_useful_packages.yml
+
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+
+    - name: Remove default nginx config
+      ansible.builtin.file:
+        name: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: restart nginx
+
+    - name: Create nginx server config
+      ansible.builtin.copy:
+        src: ../files/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: 0600
+      notify: restart nginx
+
+    - name: Create http config for nginx
+      ansible.builtin.template:
+        src: ../templates/nginx-http.j2
+        dest: /etc/nginx/sites-enabled/http
+        mode: 0600
+      notify: restart nginx
+
+    - name: Generate dhparams
+      ansible.builtin.shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
+      args:
+        creates: /etc/nginx/dhparams.pem
+
+    - name: Copy SSL cert
+      ansible.builtin.copy:
+        src: ../files/fullchain.pem
+        dest: /etc/nginx/fullchain.pem
+        mode: 0600
+      notify: restart nginx
+
+    - name: Copy SSL key
+      ansible.builtin.copy:
+        src: ../files/privkey.pem
+        dest: /etc/nginx/privkey.pem
+        mode: 0600
+      notify: restart nginx
+
+    - name: Create https config for nginx
+      template:
+        src: ../templates/nginx-https.j2
+        dest: /etc/nginx/sites-enabled/https
+        mode: 0600
+      notify: restart nginx
+
+  # Setup a handler for restarting nginx
+  handlers:
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

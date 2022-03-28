@@ -2,9 +2,11 @@
 
 Provision a High Availability Multi Master Kubernetes Cluster using Vagrant, Virtualbox and Ansible with the following configuration:
 
-* 3 Kubernetes master nodes that manage the cluster
+* 2 Kubernetes master nodes that manage the cluster
 * 2 Kubernetes worker nodes where the Docker containers will be deployed to
 * 1 HAProxy Load Balancer to achieve High Availability across the master nodes
+* 1 MongoDB database server to persist data
+* 1 nginx reverse proxy to provide SSL termination
 
 With a default Kubernetes configuration, no external IP addresses are assigned when a LoadBalancer service is created.
 
@@ -24,8 +26,9 @@ At least the following hardware resources will be required on the host machine t
 | k8s-worker-1 |  1  | 512MB  |
 | k8s-worker-2 |  1  | 512MB  |
 | db           |  1  | 512MB  |
+| nginx        |  1  | 512MB  |
 |              |     |        |
-| TOTAL        |  5  | 6GB    |
+| TOTAL        |  5  | 6.5GB  |
 
 ## Clone the GitHub Repository
 
@@ -75,6 +78,7 @@ This will provision the following Virtual Box VMs using Vagrant and Ansible:
 | k8s-worker-1   | Kubernetes Worker where Docker Containers wll run |
 | k8s-worker-2   | Kubernetes Worker where Docker Containers wll run |
 | db             | MongoDB Database Server to persist data           |
+| nginx          | Nginx Reverse Proxy to provide SSL termination    |
 
 
 ```bash
@@ -92,3 +96,7 @@ vagrant halt
 ```bash
 vagrant destroy -f
 ```
+
+## Accessing the Stack
+
+[https://guestbook.shongololo.xyz/](https://guestbook.shongololo.xyz/)

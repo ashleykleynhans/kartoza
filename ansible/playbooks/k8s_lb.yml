@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+
   tasks:
     - name: Include task to install packages that enable apt over HTTPS
       ansible.builtin.include_tasks: includes/apt_over_https.yml

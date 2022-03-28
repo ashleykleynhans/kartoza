@@ -1,0 +1,10 @@
+server_tokens off;
+
+server {
+    listen 80 default_server;
+    server_name {{ domain_name }};
+
+    location / {
+        rewrite ^ https://{{ domain_name }}$request_uri? permanent;
+    }
+}

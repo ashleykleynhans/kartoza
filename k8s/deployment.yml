@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: guestbook
+  name: guestbook
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+        - name: guestbook
+          image: gcr.io/glass-gasket-345417/guestbook:latest
+          ports:
+            - containerPort: 3000

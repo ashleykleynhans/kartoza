@@ -1,0 +1,9 @@
+---
+# Deploy an application
+- name: Deploy an application
+  ansible.builtin.command: "kubectl apply -f {{ item }}"
+  loop:
+    # Deploy guestbook application
+    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/deployment.yaml
+    # Create Load Balancer with external IP 10.10.10.180
+    - https://raw.githubusercontent.com/ashleykleynhans/kartoza/master/k8s/loadbalancer.yaml
